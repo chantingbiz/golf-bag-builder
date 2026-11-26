@@ -1,6 +1,11 @@
 export const images = {
   logo: "/images/golf-bag-builder-logo.png",
   logoFallback: "/images/logo.png",
+  brand: "/images/bagenvy1.png",
+  dream: "/images/dreamgolfbag.png",
+  heroVideo: "/images/herodesktopv7.mp4",
+  heroVideoMobile: "/images/heromobilev2.mp4",
+  heroVideoMobileStill: "/images/heromobilev2-still.jpg",
   heroBag: "/images/white-hero-bag.png",
   heroBagFallback: "/images/hero-bag.png",
 } as const;

@@ -1,11 +1,15 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FallbackImage } from "@/components/fallback-image";
 import { images } from "@/lib/builds";
 
 export function SiteHeader() {
+  const pathname = usePathname();
+  const home = pathname === "/";
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -33,9 +37,9 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className="site-header">
+    <header className={home ? "site-header site-header-home" : "site-header"}>
       <div className="wrap header-bar">
-        <Link className="brand" href="/" onClick={() => setOpen(false)}>
+        <Link className="brand brand-legacy" href="/" onClick={() => setOpen(false)}>
           <FallbackImage
             className="brand-mark"
             src={images.logo}
@@ -46,6 +50,9 @@ export function SiteHeader() {
             priority
           />
           <span>Golf Bag Builder</span>
+        </Link>
+        <Link className="brand brand-envy" href="/" aria-label="Bag Envy" onClick={() => setOpen(false)}>
+          <Image className="brand-mark" src={images.brand} alt="" width={1536} height={1024} priority />
         </Link>
         <button
           type="button"
@@ -66,6 +73,16 @@ export function SiteHeader() {
           </button>
         </nav>
       </div>
+      {home ? (
+        <div className="wrap home-banner">
+          <Link className="brand brand-envy" href="/" aria-label="Dream Golf Bag">
+            <Image className="brand-mark" src={images.dream} alt="" width={1536} height={1024} priority />
+          </Link>
+          <h1 className="home-banner-title">
+            Your golf bag deserves to <span className="home-banner-accent">look cool</span>.
+          </h1>
+        </div>
+      ) : null}
     </header>
   );
 }
